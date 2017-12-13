@@ -8,7 +8,7 @@ android {
         minSdkVersion android_minSdkVersion
         targetSdkVersion android_targetSdkVersion
         versionCode 1
-        versionName library_version
+        versionName "1.0.0"
         applicationId "com.tgirard12.krecyclerdsl"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -27,6 +27,15 @@ android {
 
 dependencies {
     implementation kotlin_stdlib
+
+    implementation project(":krecyclerdsl")
+
+    implementation rxjava
+    implementation rxjava_android
+    implementation picasso
+
+    implementation retrofit_gson
+    implementation retrofit_rxjava
 
     implementation android_design
     implementation android_appcompat_v7

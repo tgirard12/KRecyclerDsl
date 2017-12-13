@@ -17,6 +17,14 @@ buildscript {
     ext.android_recyclerview_v7 = "com.android.support:recyclerview-v7:$android_support_version"
     ext.android_constraint_layout = "com.android.support.constraint:constraint-layout:1.0.2"
 
+    ext.rxjava = 'io.reactivex.rxjava2:rxjava:2.1.7'
+    ext.rxjava_android = 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    ext.picasso = 'com.squareup.picasso:picasso:2.5.2'
+
+    ext.retrofit = "com.squareup.retrofit2:retrofit:2.3.0"
+    ext.retrofit_gson = "com.squareup.retrofit2:converter-gson:2.3.0"
+    ext.retrofit_rxjava = "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+
     // Test
     ext.junit = "junit:junit:4.12"
     ext.espresso_core = "com.android.support.test.espresso:espresso-core:3.0.1"
