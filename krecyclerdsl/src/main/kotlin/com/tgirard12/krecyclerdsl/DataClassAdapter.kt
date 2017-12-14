@@ -36,8 +36,10 @@ inline fun <reified T, reified V : View> dataClassAdapter(
 /**
  * RecyclerView.Adapter for data class, use fun [dataClassAdapter] to create it
  */
-class DataClassAdapter<out T, out V : View>(private val items: List<T>, @LayoutRes val resId: Int)
+class DataClassAdapter<T, out V : View>(items: List<T>, @LayoutRes val resId: Int)
     : RecyclerView.Adapter<DataClassAdapter.DataClassViewHolder>() {
+
+    val mutableItems = items.toMutableList()
 
     private var _onBindViewHolder: (view: V, item: T) -> Unit = { _, _ -> }
     private var _onItemClickListener: (view: V, item: T) -> Unit = { _, _ -> }
@@ -62,12 +64,12 @@ class DataClassAdapter<out T, out V : View>(private val items: List<T>, @LayoutR
 
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: DataClassViewHolder, position: Int) {
-        val item = items[position]
+        val item = mutableItems[position]
         holder.item = item
         _onBindViewHolder(holder.itemView as V, item)
     }
 
-    override fun getItemCount(): Int = items.count()
+    override fun getItemCount(): Int = mutableItems.count()
 
     class DataClassViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var item: Any? = null
