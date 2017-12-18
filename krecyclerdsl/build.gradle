@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: "../gradle/publish-android-jar.gradle"
 
 version = library_version
 
@@ -26,7 +27,7 @@ android {
 }
 
 dependencies {
-    implementation kotlin_stdlib
+    compileOnly kotlin_stdlib
 
     compileOnly android_appcompat_v7
     compileOnly android_recyclerview_v7

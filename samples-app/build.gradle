@@ -28,7 +28,8 @@ android {
 dependencies {
     implementation kotlin_stdlib
 
-    implementation project(":krecyclerdsl")
+    // implementation project(":krecyclerdsl")
+    implementation "com.tgirard12.krecyclerdsl:krecyclerdsl:0.1.0"
 
     implementation rxjava
     implementation rxjava_android

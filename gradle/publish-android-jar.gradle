@@ -1,0 +1,69 @@
+apply plugin: "maven-publish"
+apply plugin: 'com.jfrog.bintray'
+
+def artifactName() { "${project.name}-${project.version}.jar" }
+
+// Source Jar
+task sourceJar(type: Jar) {
+    mustRunAfter assemble
+    from 'src/main/kotlin'
+    classifier "sources"
+    baseName project.name
+}
+
+task assembleAllJar(type: Copy) {
+    mustRunAfter assemble
+    afterEvaluate {
+        def zipFile = file("${buildDir}/outputs/aar/${project.name}-release.aar")
+        def outputDir = file("${buildDir}/libs")
+
+        from zipTree(zipFile)
+        into outputDir
+        include "classes.jar"
+        rename "classes.jar", artifactName()
+    }
+}
+assembleAllJar.dependsOn 'sourceJar'
+assembleAllJar.dependsOn 'assemble'
+publish.dependsOn 'assembleAllJar'
+bintrayUpload.dependsOn 'publish'
+
+// Publish Maven
+publishing {
+    publications {
+        libJar(MavenPublication) {
+            artifactId project.name
+            artifact file("$buildDir/libs/${artifactName()}")
+            artifact sourceJar
+        }
+    }
+    repositories {
+        maven { url "$buildDir/publications/libJar" }
+    }
+}
+
+// Upload Bintray
+bintray {
+    user = bintrayUser
+    key = bintrayApiKey
+    publications = ['libJar']
+    override = false
+    publish = true
+    dryRun = false
+    pkg {
+        repo = 'android'
+        name = 'KRecyclerDsl'
+        description = "Kotlin Dsl for Android RecyclerView"
+        publicDownloadNumbers = true
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/tgirard12/KRecyclerDsl.get'
+        issueTrackerUrl = 'https://github.com/tgirard12/KRecyclerDsl/issues'
+        githubRepo = 'tgirard12/KRecyclerDsl'
+        version {
+            name = this.version
+            desc = "v${this.version}"
+            released = new Date()
+            vcsTag = this.version
+        }
+    }
+}

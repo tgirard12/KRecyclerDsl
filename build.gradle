@@ -45,6 +45,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://dl.bintray.com/tgirard12/android" }
     }
     buildscript {
         repositories {
