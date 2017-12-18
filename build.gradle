@@ -2,12 +2,12 @@
 
 buildscript {
     // Kotlin
-    ext.kotlin_version = '1.2.0'
+    ext.kotlin_version = '1.2.10'
     ext.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // Android
     ext.android_compileSdkVersion = 26
-    ext.android_minSdkVersion = 16
+    ext.android_minSdkVersion = 21
     ext.android_targetSdkVersion = 26
     ext.android_buildToolsVersion = "26.0.3"
 
@@ -37,6 +37,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
