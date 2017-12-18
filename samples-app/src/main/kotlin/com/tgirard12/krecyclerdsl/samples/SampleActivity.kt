@@ -1,4 +1,4 @@
-package com.tgirard12.krecyclerdsl
+package com.tgirard12.krecyclerdsl.samples
 
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.squareup.picasso.Picasso
+import com.tgirard12.krecyclerdsl.dataClassAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_sample.*

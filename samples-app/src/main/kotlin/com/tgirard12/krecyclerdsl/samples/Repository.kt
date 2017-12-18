@@ -1,4 +1,4 @@
-package com.tgirard12.krecyclerdsl
+package com.tgirard12.krecyclerdsl.samples
 
 data class Repositories(
 

@@ -9,7 +9,7 @@ android {
         targetSdkVersion android_targetSdkVersion
         versionCode 1
         versionName "1.0.0"
-        applicationId "com.tgirard12.krecyclerdsl"
+        applicationId "com.tgirard12.krecyclerdsl.samples"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

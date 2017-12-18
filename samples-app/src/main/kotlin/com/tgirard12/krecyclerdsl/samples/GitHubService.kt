@@ -1,4 +1,4 @@
-package com.tgirard12.krecyclerdsl
+package com.tgirard12.krecyclerdsl.samples
 
 import io.reactivex.Single
 import retrofit2.http.GET

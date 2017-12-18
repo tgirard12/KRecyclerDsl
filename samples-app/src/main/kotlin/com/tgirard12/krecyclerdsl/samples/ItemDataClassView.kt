@@ -1,4 +1,4 @@
-package com.tgirard12.krecyclerdsl
+package com.tgirard12.krecyclerdsl.samples
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
