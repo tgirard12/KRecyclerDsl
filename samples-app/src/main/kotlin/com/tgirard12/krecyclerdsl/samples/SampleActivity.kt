@@ -45,7 +45,7 @@ class SampleActivity : AppCompatActivity() {
     }
 
     private fun refreshRecyclerView(repositories: Repositories) {
-        recyclerView.adapter = dataClassAdapter<Repositories.Repository, ItemDataClassView>(repositories.items, R.layout.item_dataclass_adapter) {
+        recyclerView.adapter = dataClassAdapter<ItemDataClassView, Repositories.Repository>(R.layout.item_dataclass_adapter, repositories.items) {
             onBindViewHolder { view, repository ->
                 view.name.text = repository.name
                 view.description.text = repository.description

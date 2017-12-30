@@ -10,7 +10,7 @@ import android.view.ViewGroup
  * Create a @DataClassAdapter
  *
  *  ```
- * recyclerView.adapter = dataClassAdapter<DataClass, ItemView>(items, R.layout.item_view) {
+ * recyclerView.adapter = dataClassAdapter<ItemView, DataClass>(R.layout.item_view, items) {
  *     onBindViewHolder { view, appSites ->
  *         ...
  *     }
@@ -25,21 +25,20 @@ import android.view.ViewGroup
  *  <com.tgirard12.krecyclerdsl.ItemView >
  *      ...
  *  </com.tgirard12.krecyclerdsl.ItemView >
- * ```
+ * ```h
  */
-inline fun <reified T, reified V : View> dataClassAdapter(
-        items: List<T>, @LayoutRes resId: Int,
-        f: DataClassAdapter<T, V>.() -> Unit): DataClassAdapter<T, V> {
-    return DataClassAdapter<T, V>(items, resId).apply { f() }
+inline fun <reified V : View, reified T> dataClassAdapter(
+        @LayoutRes resId: Int, items: List<T>, f: DataClassAdapter<V, T>.() -> Unit): DataClassAdapter<V, T> {
+    return DataClassAdapter<V, T>(resId, items).apply { f() }
 }
 
 /**
  * RecyclerView.Adapter for data class, use fun [dataClassAdapter] to create it
  */
-class DataClassAdapter<T, out V : View>(items: List<T>, @LayoutRes val resId: Int)
+class DataClassAdapter<out V : View, T>(@LayoutRes private val resId: Int, items: List<T>)
     : RecyclerView.Adapter<DataClassAdapter.DataClassViewHolder>() {
 
-    val mutableItems = items.toMutableList()
+    private val mutableItems = items.toMutableList()
 
     private var _onBindViewHolder: (view: V, item: T) -> Unit = { _, _ -> }
     private var _onItemClickListener: (view: V, item: T) -> Unit = { _, _ -> }
