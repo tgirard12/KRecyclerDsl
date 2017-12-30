@@ -23,5 +23,5 @@ recyclerView.adapter = dataClassAdapter<MyView, MyDataClass>(R.layout.my_view, m
 == Dependency
 
 ----
-compile 'com.tgirard12.krecyclerdsl:krecyclerdsl:0.1.0'
+compile 'com.tgirard12.krecyclerdsl:krecyclerdsl:0.2.0'
 ----
