@@ -1,0 +1,27 @@
+
+= KRecyclerDsl
+
+Kotlin Dsl for Android RecyclerView
+
+== Exemple
+
+samples-app/src/main/kotlin/com/tgirard12/krecyclerdsl/samples/SampleActivity.kt(Sample project)
+
+[source,kotlin]
+----
+recyclerView.adapter = dataClassAdapter<MyView, MyDataClass>(R.layout.my_view, myItems) {
+    onBindViewHolder { view, dataClass ->
+        view.name.text = dataClass.name
+        view.description.text = dataClass.description
+    }
+    onItemClickListener { view, dataClass ->
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(dataClass.html_url)))
+    }
+}
+----
+
+== Dependency
+
+----
+compile 'com.tgirard12.krecyclerdsl:krecyclerdsl:0.1.0'
+----
