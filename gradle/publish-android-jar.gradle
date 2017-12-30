@@ -60,10 +60,10 @@ bintray {
         issueTrackerUrl = 'https://github.com/tgirard12/KRecyclerDsl/issues'
         githubRepo = 'tgirard12/KRecyclerDsl'
         version {
-            name = this.version
-            desc = "v${this.version}"
+            name = library_version
+            desc = "v${library_version}"
             released = new Date()
-            vcsTag = this.version
+            vcsTag = "v${library_version}"
         }
     }
 }
