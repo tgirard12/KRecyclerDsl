@@ -38,7 +38,7 @@ inline fun <reified V : View, reified T> dataClassAdapter(
 class DataClassAdapter<out V : View, T>(@LayoutRes private val resId: Int, items: List<T>)
     : RecyclerView.Adapter<DataClassAdapter.DataClassViewHolder>() {
 
-    private val mutableItems = items.toMutableList()
+    val mutableItems = items.toMutableList()
 
     private var _onBindViewHolder: (view: V, item: T) -> Unit = { _, _ -> }
     private var _onItemClickListener: (view: V, item: T) -> Unit = { _, _ -> }
