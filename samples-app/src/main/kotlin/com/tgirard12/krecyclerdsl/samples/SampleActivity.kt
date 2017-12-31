@@ -8,6 +8,8 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.squareup.picasso.Picasso
+import com.tgirard12.krecyclerdsl.DataClassAdapter
+import com.tgirard12.krecyclerdsl.addInfiniteScrollListener
 import com.tgirard12.krecyclerdsl.dataClassAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -28,6 +30,10 @@ class SampleActivity : AppCompatActivity() {
     private var service = retrofit.create<GitHubService>(GitHubService::class.java)
     private val picasso by lazy { Picasso.with(this.applicationContext) }
 
+    private var search = false
+    private var nextPage = 1
+    private var adapter: DataClassAdapter<ItemDataClassView, Repositories.Repository>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sample_activity)
@@ -36,24 +42,41 @@ class SampleActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        service.search("kotlin")
+        recyclerView.addInfiniteScrollListener { search() }
+        search()
+    }
+
+    private fun search() {
+        if (search)
+            return
+
+        search = true
+        service.search("kotlin", page = nextPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess { nextPage++ }
+                .doFinally { search = false }
                 .subscribe(
                         { refreshRecyclerView(it) },
                         { Log.e("SampleActivity", it.message, it) })
     }
 
     private fun refreshRecyclerView(repositories: Repositories) {
-        recyclerView.adapter = dataClassAdapter<ItemDataClassView, Repositories.Repository>(R.layout.item_dataclass_adapter, repositories.items) {
-            onBindViewHolder { view, repository ->
-                view.name.text = repository.name
-                view.description.text = repository.description
-                picasso.load(repository.owner.avatar_url).into(view.image)
+        if (adapter == null) {
+            adapter = dataClassAdapter<ItemDataClassView, Repositories.Repository>(R.layout.item_dataclass_adapter, repositories.items) {
+                onBindViewHolder { view, repository ->
+                    view.name.text = repository.name
+                    view.description.text = repository.description
+                    picasso.load(repository.owner.avatar_url).into(view.image)
+                }
+                onItemClickListener { _, repository ->
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(repository.html_url)))
+                }
             }
-            onItemClickListener { _, repository ->
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(repository.html_url)))
-            }
+            recyclerView.adapter = adapter
+        } else {
+            adapter?.mutableItems?.addAll(repositories.items)
+            adapter?.notifyDataSetChanged()
         }
     }
 }
