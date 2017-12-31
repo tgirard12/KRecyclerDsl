@@ -5,7 +5,7 @@ Kotlin Dsl for Android RecyclerView
 
 == Exemple
 
-samples-app/src/main/kotlin/com/tgirard12/krecyclerdsl/samples/SampleActivity.kt(Sample project)
+link:samples-app/src/main/kotlin/com/tgirard12/krecyclerdsl/samples/SampleActivity.kt[Sample project]
 
 [source,kotlin]
 ----
@@ -22,6 +22,12 @@ recyclerView.adapter = dataClassAdapter<MyView, MyDataClass>(R.layout.my_view, m
 
 == Dependency
 
+KRecyclerDsl has no dependency, you must add your RecyclerView library version. +
+This library generate a JAR, not an AAR, so you can use it with any compile version option.
+
 ----
-compile 'com.tgirard12.krecyclerdsl:krecyclerdsl:0.3.0'
+compile "com.tgirard12.krecyclerdsl:krecyclerdsl:0.3.0"
+
+// Required
+compile "com.android.support:recyclerview-v7:$your_version"
 ----
