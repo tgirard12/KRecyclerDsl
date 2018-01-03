@@ -20,6 +20,16 @@ recyclerView.adapter = dataClassAdapter<MyView, MyDataClass>(R.layout.my_view, m
 }
 ----
 
+== Extensions functions
+
+This library provide some useful (or not) extensions functions :
+
+[source,kotlin]
+----
+// Call the function when scroll down on the last visible item
+recyclerView.addInfiniteScrollListener { search() }
+----
+
 == Dependency
 
 KRecyclerDsl has no dependency, you must add your RecyclerView library version. +
