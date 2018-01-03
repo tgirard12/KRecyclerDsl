@@ -4,13 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.squareup.picasso.Picasso
-import com.tgirard12.krecyclerdsl.DataClassAdapter
-import com.tgirard12.krecyclerdsl.addInfiniteScrollListener
-import com.tgirard12.krecyclerdsl.dataClassAdapter
+import com.tgirard12.krecyclerdsl.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.content_sample.*
@@ -40,8 +37,9 @@ class SampleActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+        recyclerView.addDividerItemDecorationHorizontal()
+        recyclerView.addDividerItemDecorationVertical()
         recyclerView.addInfiniteScrollListener { search() }
         search()
     }
