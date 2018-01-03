@@ -28,6 +28,12 @@ This library provide some useful (or not) extensions functions :
 ----
 // Call the function when scroll down on the last visible item
 recyclerView.addInfiniteScrollListener { search() }
+
+// Add separation between each line.
+recyclerView.addDividerItemDecorationVertical()
+
+// Add separation between each column.
+recyclerView.addDividerItemDecorationHorizontal()
 ----
 
 == Dependency

@@ -1,5 +1,6 @@
 package com.tgirard12.krecyclerdsl
 
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
@@ -24,3 +25,19 @@ fun RecyclerView.addInfiniteScrollListener(f: () -> Unit): Unit {
         }
     })
 }
+
+/**
+ * Add separation [DividerItemDecoration] between each line.
+ *
+ * This [RecyclerView] must have a [LinearLayoutManager]
+ */
+fun RecyclerView.addDividerItemDecorationVertical() =
+        this.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+
+/**
+ * Add separation [DividerItemDecoration] between each column
+ *
+ * This [RecyclerView] must have a [LinearLayoutManager]
+ */
+fun RecyclerView.addDividerItemDecorationHorizontal() =
+        this.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.HORIZONTAL))
