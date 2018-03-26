@@ -1,6 +1,8 @@
 
 = KRecyclerDsl
 
+image::https://api.bintray.com/packages/tgirard12/android/KRecyclerDsl/images/download.svg[link="https://bintray.com/tgirard12/android/KRecyclerDsl/_latestVersion"]
+
 Kotlin Dsl for Android RecyclerView
 
 == Exemple
@@ -42,7 +44,7 @@ KRecyclerDsl has no dependency, you must add your RecyclerView library version. 
 This library generate a JAR, not an AAR, so you can use it with any compile version option.
 
 ----
-compile "com.tgirard12.krecyclerdsl:krecyclerdsl:0.3.0"
+compile "com.tgirard12.krecyclerdsl:krecyclerdsl:$LATEST_VERSION"
 
 // Required
 compile "com.android.support:recyclerview-v7:$your_version"
