@@ -2,16 +2,16 @@
 
 buildscript {
     // Kotlin
-    ext.kotlin_version = '1.2.0'
+    ext.kotlin_version = '1.2.31'
     ext.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Android
     ext.android_compileSdkVersion = 26
     ext.android_minSdkVersion = 21
     ext.android_targetSdkVersion = 26
-    ext.android_buildToolsVersion = "26.0.3"
+    ext.android_buildToolsVersion = "27.0.3"
 
-    ext.android_support_version = "27.0.0"
+    ext.android_support_version = "27.1.0"
     ext.android_design = "com.android.support:design:$android_support_version"
     ext.android_appcompat_v7 = "com.android.support:appcompat-v7:$android_support_version"
     ext.android_recyclerview_v7 = "com.android.support:recyclerview-v7:$android_support_version"
